@@ -10,6 +10,11 @@ class Restaurant(models.Model):
         verbose_name='이름',
         max_length=255,
     )
+    image = models.ImageField(
+        verbose_name='사진',
+        upload_to='restaurants',
+        null=True
+    )
     address = models.TextField(
         verbose_name='주소',
     )

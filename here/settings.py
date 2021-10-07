@@ -126,6 +126,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
+# 미디어 설정
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # 사용자 모델 설정
 AUTH_USER_MODEL = 'users.User'
 
