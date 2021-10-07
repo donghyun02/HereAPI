@@ -38,6 +38,7 @@ class UserChangeForm(forms.ModelForm):
         fields = ('email', 'password', 'name', 'is_active', 'is_admin')
 
 
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
@@ -60,6 +61,3 @@ class UserAdmin(BaseUserAdmin):
             }
         ),
     )
-
-
-admin.site.register(User, UserAdmin)
