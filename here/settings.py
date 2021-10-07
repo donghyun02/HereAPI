@@ -125,4 +125,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# 사용자 모델 설정
 AUTH_USER_MODEL = 'users.User'
+
+
+# django-rest-framework 설정
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
