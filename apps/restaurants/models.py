@@ -71,6 +71,10 @@ class Seat(models.Model):
         verbose_name='좌석명',
         max_length=128,
     )
+    description = models.TextField(
+        verbose_name='설명',
+        blank=True,
+    )
 
     class Meta:
         verbose_name = '좌석'
