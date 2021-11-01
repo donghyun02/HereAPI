@@ -10,6 +10,7 @@ class SeatSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'image',
+            'description',
         )
 
 
