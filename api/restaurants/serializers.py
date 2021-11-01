@@ -1,6 +1,16 @@
 from rest_framework import serializers
 
-from apps.restaurants.models import Restaurant
+from apps.restaurants.models import Restaurant, Seat
+
+
+class SeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Seat
+        fields = (
+            'id',
+            'name',
+            'image',
+        )
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -9,6 +19,9 @@ class RestaurantSerializer(serializers.ModelSerializer):
         max_digits=3,
         decimal_places=2,
         coerce_to_string=False,
+    )
+    seats = SeatSerializer(
+        many=True,
     )
 
     class Meta:
@@ -19,4 +32,5 @@ class RestaurantSerializer(serializers.ModelSerializer):
             'image',
             'address',
             'rating',
+            'seats',
         )
