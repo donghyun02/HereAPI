@@ -54,3 +54,27 @@ class Review(models.Model):
 
     def __str__(self):
         return f'[후기 {self.id}]'
+
+
+class Seat(models.Model):
+    restaurant = models.ForeignKey(
+        'Restaurant',
+        verbose_name='식당',
+        related_name='seats',
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        verbose_name='사진',
+        upload_to='seats',
+    )
+    name = models.CharField(
+        verbose_name='좌석명',
+        max_length=128,
+    )
+
+    class Meta:
+        verbose_name = '좌석'
+        verbose_name_plural = '좌석'
+
+    def __str__(self):
+        return f'[좌석 {self.id}] 식당: {self.restaurant_id}'
