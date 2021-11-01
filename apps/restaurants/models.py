@@ -30,6 +30,26 @@ class Restaurant(models.Model):
         return self.reviews.get_rating()
 
 
+class RestaurantCarousel(models.Model):
+    restaurant = models.ForeignKey(
+        'Restaurant',
+        verbose_name='식당',
+        related_name='carousel',
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        verbose_name='사진',
+        upload_to='restaurant_carousel',
+    )
+
+    class Meta:
+        verbose_name = '캐러셀 이미지'
+        verbose_name_plural = '캐러셀 이미지'
+
+    def __str__(self):
+        return f'[캐러셀 이미지 {self.id}] 식당: {self.restaurant.name}'
+
+
 class Review(models.Model):
     restaurant = models.ForeignKey(
         'restaurants.Restaurant',
@@ -81,4 +101,4 @@ class Seat(models.Model):
         verbose_name_plural = '좌석'
 
     def __str__(self):
-        return f'[좌석 {self.id}] 식당: {self.restaurant_id}'
+        return f'[좌석 {self.id}] 식당: {self.restaurant.name}'
