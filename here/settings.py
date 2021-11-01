@@ -154,4 +154,5 @@ REST_FRAMEWORK = {
 # CORS 설정
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8080',
+    'http://localhost:8080',
 ]
