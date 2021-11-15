@@ -39,6 +39,10 @@ class Type(models.Model):
         verbose_name='이름',
         max_length=20,
     )
+    code = models.CharField(
+        verbose_name='코드',
+        max_length=20,
+    )
 
     class Meta:
         verbose_name = '식당 종류'

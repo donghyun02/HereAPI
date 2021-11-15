@@ -28,6 +28,7 @@ class TypeSerializer(serializers.ModelSerializer):
         model = Type
         fields = (
             'name',
+            'code',
         )
 
 
