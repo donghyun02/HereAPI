@@ -18,6 +18,10 @@ class Restaurant(models.Model):
     address = models.TextField(
         verbose_name='주소',
     )
+    types = models.ManyToManyField(
+        'Type',
+        verbose_name='식당 종류',
+    )
 
     class Meta:
         verbose_name = '식당'
@@ -28,6 +32,20 @@ class Restaurant(models.Model):
 
     def get_rating(self) -> Decimal:
         return self.reviews.get_rating()
+
+
+class Type(models.Model):
+    name = models.CharField(
+        verbose_name='이름',
+        max_length=20,
+    )
+
+    class Meta:
+        verbose_name = '식당 종류'
+        verbose_name_plural = '식당 종류'
+
+    def __str__(self):
+        return f'[식당 종류 {self.id}] 이름: {self.name}'
 
 
 class RestaurantCarousel(models.Model):
