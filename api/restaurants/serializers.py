@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.restaurants.models import Restaurant, Seat, RestaurantCarousel
+from apps.restaurants.models import Restaurant, Seat, RestaurantCarousel, Type
 
 
 class SeatSerializer(serializers.ModelSerializer):
@@ -23,6 +23,14 @@ class RestaurantCarouselSerializer(serializers.ModelSerializer):
         )
 
 
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = (
+            'name',
+        )
+
+
 class RestaurantSerializer(serializers.ModelSerializer):
     rating = serializers.DecimalField(
         source='get_rating',
@@ -36,6 +44,9 @@ class RestaurantSerializer(serializers.ModelSerializer):
     seats = SeatSerializer(
         many=True,
     )
+    types = TypeSerializer(
+        many=True,
+    )
 
     class Meta:
         model = Restaurant
@@ -47,4 +58,5 @@ class RestaurantSerializer(serializers.ModelSerializer):
             'rating',
             'carousel',
             'seats',
+            'types',
         )

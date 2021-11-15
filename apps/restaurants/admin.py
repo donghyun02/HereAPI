@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from apps.restaurants.models import Restaurant, Review, Seat, RestaurantCarousel
+from apps.restaurants.models import Restaurant, Review, Seat, RestaurantCarousel, Type
 
 
 @admin.register(Restaurant)
 class RestaurantAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Type)
+class TypeAdmin(admin.ModelAdmin):
     pass
 
 
