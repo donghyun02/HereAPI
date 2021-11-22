@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.restaurants.models import Restaurant, Review, Seat, RestaurantCarousel, Type
+from apps.restaurants.models import Restaurant, Review, Seat, RestaurantCarousel, Type, Reservation
 
 
 @admin.register(Restaurant)
@@ -25,4 +25,9 @@ class SeatAdmin(admin.ModelAdmin):
 
 @admin.register(RestaurantCarousel)
 class RestaurantCarouselAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
     pass
