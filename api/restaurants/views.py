@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
@@ -29,12 +32,17 @@ class ReservationTimeView(APIView):
 class ReservationView(APIView):
     def post(self, request):
         seat_id = request.data.get('seat_id')
-        datetime = request.data.get('datetime')
+        reserved_datetime = timezone.make_aware(
+            datetime.strptime(
+                request.data.get('datetime'),
+                '%Y-%m-%d %H:%M:%S',
+            )
+        )
         name = request.data.get('name')
         email = request.data.get('email')
         phone_number = request.data.get('phone_number')
 
-        data = Reservation.objects.reserve(seat_id, datetime, name, email, phone_number)
+        data = Reservation.objects.reserve(seat_id, reserved_datetime, name, email, phone_number)
         serializer = ReservationSerializer(data)
 
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
