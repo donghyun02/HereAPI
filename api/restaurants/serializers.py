@@ -3,7 +3,17 @@ from rest_framework import serializers
 from apps.restaurants.models import Restaurant, Seat, RestaurantCarousel, Type, Reservation
 
 
+class RestaurantWithoutSeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = (
+            'name',
+        )
+
+
 class SeatSerializer(serializers.ModelSerializer):
+    restaurant = RestaurantWithoutSeatSerializer()
+
     class Meta:
         model = Seat
         fields = (
@@ -11,6 +21,7 @@ class SeatSerializer(serializers.ModelSerializer):
             'name',
             'image',
             'description',
+            'restaurant',
         )
 
 
