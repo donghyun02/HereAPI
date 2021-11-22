@@ -2,7 +2,7 @@ from decimal import Decimal
 
 from django.db import models
 
-from apps.restaurants.managers import ReviewManager
+from apps.restaurants.managers import ReviewManager, ReservationManager
 
 
 class Restaurant(models.Model):
@@ -147,6 +147,8 @@ class Reservation(models.Model):
         '예약자 전화번호',
         max_length=20,
     )
+
+    objects = ReservationManager()
 
     class Meta:
         verbose_name = '예약'
