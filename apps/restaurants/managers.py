@@ -18,3 +18,20 @@ class ReservationManager(models.Manager):
             'reserved_datetime__time',
             flat=True,
         )
+
+    def reserve(self, seat_id, datetime, name, email, phone_number):
+        obj = self._reserve(seat_id, datetime, name, email, phone_number)
+        self._send_email()
+        return obj
+
+    def _reserve(self, seat_id, datetime, name, email, phone_number):
+        return self.create(
+            seat_id=seat_id,
+            reserved_datetime=datetime,
+            booker_name=name,
+            booker_email=email,
+            booker_phone_number=phone_number,
+        )
+
+    def _send_email(self):
+        pass
