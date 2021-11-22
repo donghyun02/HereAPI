@@ -20,7 +20,9 @@ class ReservationTimeView(APIView):
     def get(self, request):
         seat_id = request.query_params.get('seat_id')
         date = request.query_params.get('date')
+
         data = Reservation.objects.get_reserved_times(seat_id, date)
+
         return Response(data=data, status=status.HTTP_200_OK)
 
 
@@ -31,6 +33,8 @@ class ReservationView(APIView):
         name = request.data.get('name')
         email = request.data.get('email')
         phone_number = request.data.get('phone_number')
+
         data = Reservation.objects.reserve(seat_id, datetime, name, email, phone_number)
         serializer = ReservationSerializer(data)
+
         return Response(data=serializer.data, status=status.HTTP_201_CREATED)
