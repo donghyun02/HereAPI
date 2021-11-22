@@ -124,3 +124,37 @@ class Seat(models.Model):
 
     def __str__(self):
         return f'[좌석 {self.id}] 식당: {self.restaurant.name}'
+
+
+class Reservation(models.Model):
+    seat = models.ForeignKey(
+        'Seat',
+        verbose_name='좌석',
+        on_delete=models.CASCADE,
+        related_name='reservations',
+    )
+    reserved_datetime = models.DateTimeField(
+        '예약시간',
+    )
+    booker_name = models.CharField(
+        '예약자 이름',
+        max_length=20,
+    )
+    booker_email = models.EmailField(
+        '예약자 이메일',
+    )
+    booker_phone_number = models.CharField(
+        '예약자 전화번호',
+        max_length=20,
+    )
+
+    class Meta:
+        verbose_name = '예약'
+        verbose_name_plural = '예약'
+
+    def __str__(self):
+        return (
+            f'[예약 {self.id}] '
+            f'예약자: {self.booker_name}, '
+            f'예약시간: {self.reserved_datetime.strftime("YYYY-MM-DD HH:mm")}'
+        )
